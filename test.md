@@ -1,2 +1,2 @@
 hello, gihub!
-from EGUCHI
+from eguchi
