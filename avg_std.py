@@ -5,11 +5,14 @@ import matplotlib.pyplot as plt
 import matplotlib
 #import japanize_matplotlib
 from matplotlib.ticker import ScalarFormatter
+#from matplotlib.font_manager import FontProperties
+#matplotlib.font_manager.FontProperties(fname = '/home/eguchi/.fonts/ipaexg.ttf' )
 
-from matplotlib import font_manager
+#from matplotlib import font_manager
+#font_manager.fontManager.addfont("/home/eguchi/.fonts/ipaexg.ttf")
+#matplotlib.rc('font', family="IPAGothic")
 
-font_manager.fontManager.addfont("/home/eguchi/.fonts/ipaexg.ttf")
-matplotlib.rc('font', family="IPAGothic")
+#plt.rcParams['font.family'] = 'IPAexGothic'
 
 matplotlib.use('Agg')
 
@@ -19,7 +22,7 @@ sns.set(
     context='talk',  # スライドに合ったフォントサイズ・線幅
     style='white',  # 背景白，グリッドなし
     palette='plasma',  # あらきお気に入りのカラースキーム
-    font='sans-serif',  # フォント指定
+    font='IPAexGothic',  # フォント指定
     font_scale=1,  # フォントスケール指定（これを変えるとcontextで決まるプリセットを更にいじれる）
     #rc={'text.usetex': True}  # LaTeX書式を使えるように
 )
