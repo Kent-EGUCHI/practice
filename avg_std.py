@@ -80,5 +80,5 @@ ax = plt.hist(
 
 
 #plt.savefig('E:/owncloud/Documents/raspberrypi/adc_photor/hist_interval='+str(interval)+'s_sample='+str(sample)+'.png')
-plt.savefig('E:/owncloud/Documents/raspberrypi/adc_photor/hist_interval='+str(interval)+'s_sample='+str(sample)+'.png')
+plt.savefig('E:/owncloud/Documents/raspberrypi/figure/hist_interval='+str(interval)+'s_sample='+str(sample)+'.png')
 #plt.hist(sample_rate)

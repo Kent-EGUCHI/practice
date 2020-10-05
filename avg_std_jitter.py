@@ -11,7 +11,7 @@ from matplotlib import font_manager
 #font_manager.fontManager.addfont("/home/eguchi/.fonts/ipaexg.ttf")
 #matplotlib.rc('font', family="IPAGothic")
 
-matplotlib.use('Agg')
+#matplotlib.use('Agg')
 
 import seaborn as sns
 # グラフの設定
@@ -25,14 +25,16 @@ sns.set(
 )
 
 jitter = []
-interval = 0.0001
+interval = 0.00005
 sample = 100000
-width = 0.0001
+width = 0.1
+bin_num = 100
+y_limit = 10000
 
 #with open('/home/eguchi/ownCloud/Documents/raspberrypi/time_readadc_spidev',) as rf:
 #    t = rf.readlines()
-#t = np.loadtxt('/home/eguchi/ownCloud/Documents/raspberrypi/time_vs_bit/spidev_output_interval_'+str(interval)+'.txt')
-t = np.loadtxt('E:/owncloud/Documents/raspberrypi/adc_photor/spidev_output_interval='+str(interval)+'s_sample='+str(sample))
+t = np.loadtxt('/home/eguchi/ownCloud/Documents/raspberrypi/adc_photor/spidev_output_interval='+str(interval)+'s_sample='+str(sample))
+#t = np.loadtxt('E:/owncloud/Documents/raspberrypi/adc_photor/spidev_output_interval='+str(interval)+'s_sample='+str(sample))
 #with open('/home/eguchi/ownCloud/Documents/raspberrypi/time_vs_bit/spidev_output_interval_0.0005.txt', mode = 'w') as wf:
 #    print("avg",statistics.mean(t),file=wf)
 #    print("stdev",statistics.stdev(t),file=wf)
@@ -45,8 +47,8 @@ for i in range(np.shape(t)[0]-1):
 for i in range(np.shape(jitter)[0]):
     jitter[i] = jitter[i] - interval
 
-#with open('/home/eguchi/ownCloud/Documents/raspberrypi/time_vs_bit/std_avg_spidev_output_interval_'+str(interval), mode = 'w') as wf:
-with open('E:/owncloud/Documents/raspberrypi/adc_photor_jitter/jitter_std_avg_interval_'+str(interval), mode = 'w') as wf:
+with open('/home/eguchi/ownCloud/Documents/raspberrypi/time_vs_bit/std_avg_spidev_output_interval_'+str(interval), mode = 'w') as wf:
+#with open('E:/owncloud/Documents/raspberrypi/adc_photor_jitter/jitter_std_avg_interval_'+str(interval), mode = 'w') as wf:
     print("interval",'{:e}'.format(interval),file=wf)
     print("jitter_avg",statistics.mean(jitter),file=wf)
     print("stdev_sample",statistics.stdev(jitter),file=wf)
@@ -68,17 +70,20 @@ ma = max(jitter)
 mi = min(jitter)
 #print(ma)
 
-#ax.set_ylim(0,1000)
+#ax.set_ylim(0,y_limit)
 
 ax = plt.hist(
     jitter,
-    bins=100,
+    bins=bin_num,
     range=(-1*width,width),
     #range=(mi,ma),
 )
 
 
 #plt.savefig('E:/owncloud/Documents/raspberrypi/adc_photor/jitter_hist_interval='+str(interval)+'s_sample='+str(sample)+'.png')
-plt.savefig('E:/owncloud/Documents/raspberrypi/adc_photor_jitter/jitter_hist_interval='+str(interval)+'s_sample='+str(sample)+'width='+str(width)+'.png')
+#plt.savefig('E:/owncloud/Documents/raspberrypi/figure/jitter_hist_interval='+str(interval)+'s_sample='+str(sample)+'width='+str(width)+'.png')
+plt.savefig('/home/eguchi/ownCloud/Documents/raspberrypi/figure/jitter_hist_interval='+str(interval)+'s_sample='+str(sample)+'width='+str(width)+'.png')
 #plt.savefig('E:/owncloud/Documents/raspberrypi/adc_photor_jitter/jitter_wide_hist_interval='+str(interval)+'s_sample='+str(sample)+'.png')
 #plt.hist(sample_rate)
+
+plt.show()
